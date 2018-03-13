@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StatsBh.win Discord Server</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            background: url("/assets/bg.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .contain {
+            margin:0 auto;
+            margin-top: 5%;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            width: 37%;
+            border-radius: 15px;
+            padding: 10px;
+        }
+
+        img {
+            vertical-align: middle;
+            border-radius: 5px;
+            width: 70px;
+            margin: 22px;
+        }
+
+        img:hover {
+            width: 77px;
+            -webkit-transition: all 1s ease;
+        }
+
+        .user {
+            vertical-align: top;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .user span {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <h2>Here's a list of every members in StatsBh discord, excluding bots.</h2>
+        <% guild.members.map(user => { if(user.user.bot) return; %>
+            <div class="user"><span><%= user.user.username %></span><img src="<%= user.user.avatarURL %>"></img></div>
+    <% }); %>
+    </div>
+</body>
+</html>
