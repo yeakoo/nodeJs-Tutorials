@@ -7,7 +7,7 @@ app.use('/assets', express.static('assets'));
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-bot.login('Bot_Token_Here');
+bot.login('token');
 
 bot.on('ready', () => {
    console.log("Hi, I'm a bot.");
