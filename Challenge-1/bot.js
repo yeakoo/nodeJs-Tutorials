@@ -7,4 +7,4 @@ client.on('message', msg => {
   if (msg.content.toLowerCase() === '--bot') msg.channel.send(`Yes ${msg.author.username}?`);
   if(msg.content.toLowerCase() === '--botmention') msg.channel.send(`Yes ${msg.author.toString()}?`);
 });
-client.login('NDA5MTMwOTU2NDk5MTg5Nzgx.DYkNGw.1Xl7qu8ibTe9oO5CewqWKipx658');
+client.login('TOKEN');

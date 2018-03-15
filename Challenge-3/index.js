@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const axios = require('axios');
 const Twitter = require('twitter');
 
 const T = new Twitter({
@@ -9,18 +10,18 @@ const T = new Twitter({
   access_token_secret: ''
 });
 
-const getFollowers = function(msg, arg, name) {
-  T.get('users/show', {screen_name: name}, function(error, subs, response) {
+const getFollowers = ({guild, channel}, arg, name) => {
+  T.get('users/show', {screen_name: name}, (error, {followers_count}, response) => {
     if (!error) {
-      let followers = subs.followers_count;
-      let members = msg.guild.memberCount;
+      let followers = followers_count;
+      let members = guild.memberCount;
       let ms = "```\n";
-      ms += "Using @" + name + " Twitter account\n";
-      ms += followers + " / " + members + " = " + Math.round(followers / members)+"\n";
-      ms += Math.round(followers / members) + " / " + arg + " = " + Math.round(Math.round(followers / members) / arg)+"\n";
-      msg.channel.send(ms + "```");
+      ms += `Using @${name} Twitter account\n`;
+      ms += `${followers} / ${members} = ${Math.round(followers / members)}\n`;
+      ms += `${Math.round(followers / members)} / ${arg} = ${Math.round(Math.round(followers / members) / arg)}\n`;
+      channel.send(`${ms}\`\`\``);
     } else { 
-       msg.channel.send(error[0].message);
+       channel.send(error[0].message);
     }
   });
 }
@@ -34,4 +35,4 @@ client.on('message', msg => {
   let name = (msg.content.split(" ")[1] != undefined) ? msg.content.split(" ")[1] : "brawlhalla";
   if (msg.content.toLowerCase().startsWith('--hi')) getFollowers(msg, arg, name);
 });
-client.login('bot_token');
+client.login('TOKEN');
