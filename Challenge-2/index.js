@@ -43,7 +43,7 @@ const init = (socket, bots) => {
         if (user.avatarURL != undefined) ob.pics.push(user.avatarURL);
         else ob.pics.push(config.undefinedPic); // Image for users that don't have avatars
     });
-    socket.emit('init', { name: guild.name, members: ob, type: (bots) ? "members" : "bots" });
+    socket.emit('init', { guild_name: guild.name, members: ob, type: (bots) ? "members" : "bots" });
 }
 
 const manageUser = (socket, { username, img }) => {
@@ -51,6 +51,7 @@ const manageUser = (socket, { username, img }) => {
 }
 
 const actionFunc = (socket, action, params) => {
+    let guild = bot.guilds.get(config.guild_id);
     let user = getUser(guild, params[0]);
     if (action === "changeusername") {
         user.setNickname(params[1]);

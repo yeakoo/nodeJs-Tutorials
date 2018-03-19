@@ -71,7 +71,7 @@
             </div> Adding this feature soon... -->
         `;
         document.getElementById('goback').addEventListener('click', e => {
-            socket.emit('init');
+            window.location.reload(true); 
         });
 
         document.getElementById('changeusername').addEventListener('click', e => {
@@ -79,7 +79,7 @@
             if (name == null || name == "") {}
             else {
                 socket.emit('action', { action: "changeusername", params: [user.name, name] });
-                socket.emit('init');
+                window.location.reload(true); 
             }
         });
         document.getElementById('sendmessage').addEventListener('click', e => {
@@ -87,7 +87,7 @@
             if (msg == null || msg == "") {}
             else {
                 socket.emit('action', { action: "sendmessage", params: [user.name, msg] });
-                socket.emit('init');
+                window.location.reload(true); 
             }
         });
     }
